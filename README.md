@@ -18,7 +18,7 @@ Build Docker image with `make image`; a local binary can be generated with `make
 
 ## Test
 
-Execute unit and integration tests with `make test`. Make sure to start the dependencies first.
+Execute unit and integration tests with `make test`. Make sure to start the dependencies first and have a server instance running - `make run`.
 
 ## API
 
