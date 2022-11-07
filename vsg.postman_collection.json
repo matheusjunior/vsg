@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "392c3d74-c359-4c03-b150-d3f1e21f34fd",
+		"name": "vsg",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19247638"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user2\",\n    \"email\": \"user2@gmail.com\",\n    \"city\": \"campinas\"\n}"
+				},
+				"url": {
+					"raw": "{{server}}/users",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Voucher by city",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filterName\": \"byCity\",\n    \"city\": [\"campinas\"]\n}"
+				},
+				"url": {
+					"raw": "{{server}}/vouchers/generate",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"vouchers",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Voucher by last login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filterName\": \"byLastLogin\",\n    \"date\": \"\"\n}"
+				},
+				"url": {
+					"raw": "{{server}}/vouchers/generate",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"vouchers",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"user1\",\n    \"email\": \"user1@email.com\"\n}"
+				},
+				"url": {
+					"raw": "{{server}}/users/:id",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "bfe5818a-a707-47df-9555-0397876b5cf0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}

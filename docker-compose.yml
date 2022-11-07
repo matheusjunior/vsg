@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+      - 4576:4576
+    environment:
+      - DEBUG=1
+      - SERVICES=sns,sqs,lambda
+      - AWS_ACCESS_KEY_ID=testUser
+      - AWS_SECRET_ACCESS_KEY=testAccessKey
+      - DB_CONNECTION_STRING=postgres://admin:admin@postgres:5432/postgres
+    volumes:
+      - ./scripts:/docker-entrypoint-initaws.d/
+  
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+  
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+  
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+
